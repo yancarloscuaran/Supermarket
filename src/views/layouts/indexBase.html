@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body color="red">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="btn btn-light" href="{{url_for('index')}}"> Inicio </a>
+            <a class="btn btn-light" href="{{url_for('indexProducts')}}"> Productos </a>
+            <a class="btn btn-light" href="{{url_for('indexCashiers')}}">Cajeros</a>
+            <a class="btn btn-light" href="{{url_for('indexSuppliers')}}"> Proveedores </a>
+            <a class="btn btn-light" href="{{url_for('indexCategories')}}"> Categorias </a>
+            <a class="btn btn-light" href="{{url_for('indexClients')}}">Clientes</a>
+            <a class="btn btn-light" href="{{url_for('indexSales')}}">Ventas </a>
+        </div>
+    </nav>
+    {% block content %} {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+</body>
+
+</html>

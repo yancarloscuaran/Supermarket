@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %} {% block title %} Index {% endblock %} {% block content %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>NIT</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for period in periods %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{period[1]}}</td>
+                        <td>{{period[2]}}</td>
+                        <td>
+                            <a class="btn btn-success" href="{{url_for('editPeriod', idPeriod = period[0])}}">Editar</a>
+                            <a class="btn btn-danger" href="{{url_for('removePeriod', idPeriod = period[0])}}">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <b><a href="{{url_for('login')}}">Salir</a></b>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

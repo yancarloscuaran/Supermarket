@@ -1,0 +1,75 @@
+{% extends 'layouts/base.html' %} {% block title %} Ventas {% endblock %} {% block content %}
+
+<div class="container mt-3 row">
+    <div class="col-4"></div>
+    <div class="mb-3 col">
+        <form method="POST">
+            <div class="col"></div>
+            <select name="period" class="form-control">
+                    <option selected='true' disabled>Supermercado</option>
+                    {% if periods %}
+                        {% for period in periods %}
+                            {% if pd == period[0] %}
+                                <option selected='True' disabled value="{{period[0]}}">{{period[1]}}-{{period[2]}}</option>
+                            {% else %}
+                                <option value="{{period[0]}}">{{period[1]}}-{{period[2]}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif%}
+                </select>
+    </div>
+    <div class="col-3"> <button type="submit" class="btn btn-dark">Buscar</button></div>
+    </form>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col">
+            <a class="btn btn-outline-dark" href="{{url_for('createSales')}}"><i class="bi bi-plus-circle-fill"></i> <b>Nueva venta</b> </a>
+            <br>
+            <br>
+            <h2><b>Ventas</b></h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cajero</th>
+                        <th>Cliente</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio $</th>
+                        <th>Fecha compra</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for sale in sales %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{sale[1]}}</td>
+                        <td>{{sale[2]}}</td>
+                        <td>{{sale[3]}}</td>
+                        <td>{{sale[4]}}</td>
+                        <td>{{sale[5]}}&nbsp;$</td>
+                        <td>{{sale[6]}}</td>
+                        <td>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+                            <script>
+                                function abrirNuevo2(URL) {
+                                    window.open(URL, '_blank')
+                                }
+                            </script>
+                            <a class="btn btn-warning" style="color:#ffffff;" href="javascript:abrirNuevo2('{{url_for('imprimirSales', idSale=sale[0])}}')">Imprimir</a>
+                            <a class="btn btn-success" href="{{url_for('editSales', idSale=sale[0])}}">Editar</a>
+                            <a class="btn btn-danger" href="{{url_for('removeSales', idSale=sale[0])}}">Eliminar</i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

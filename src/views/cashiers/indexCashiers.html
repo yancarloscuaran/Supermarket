@@ -1,0 +1,66 @@
+{% extends 'layouts/base.html' %} {% block title %} Cajeros {% endblock %} {% block content %}
+<div class="container mt-3 row">
+    <div class="col-4"></div>
+    <div class="mb-3 col">
+        <form method="POST">
+            <div class="col"></div>
+            <select name="period" class="form-control">
+                <option selected='true' disabled>Supermercado</option>
+                {% if periods %}
+                    {% for period in periods %}
+                        {% if pd == period[0] %}
+                            <option selected='True' disabled value="{{period[0]}}">{{period[1]}}-{{period[2]}}</option>
+                        {% else %}
+                            <option value="{{period[0]}}">{{period[1]}}-{{period[2]}}</option>
+                        {% endif %}
+                    {% endfor %}
+                {% endif%}
+            </select>
+    </div>
+    <div class="col-3"> <button type="submit" class="btn btn-dark">Buscar</button></div>
+    </form>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col">
+            <a class="btn btn-outline-dark" href="{{url_for('createCashiers')}}"><i class="bi bi-plus-circle-fill"></i> Nuevo Cajero</a>
+            <br>
+            <br>
+            <h2><b>Cajeros</b></h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Identificacion</th>
+                        <th>Nombre</th>
+                        <th>Contacto</th>
+                        <th>Direccion</th>
+                        <th>Hora entrada</th>
+                        <th>Hora salida</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for cashier in cashiers %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{cashier[1]}}</td>
+                        <td>{{cashier[2]}}</td>
+                        <td>{{cashier[3]}}</td>
+                        <td>{{cashier[4]}}</td>
+                        <td>{{cashier[5]}}</td>
+                        <td>{{cashier[6]}}</td>
+                        <td>
+                            <a class="btn btn-success" href="{{url_for('editCashiers', idCashier = cashier[0])}}">Editar</a>
+                            <a class="btn btn-danger" href="{{url_for('removeCashiers', idCashier = cashier[0])}}">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

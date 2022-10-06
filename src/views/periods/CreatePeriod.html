@@ -1,0 +1,18 @@
+{% extends 'layouts/new.html' %} {% block title %} Crear Administrador {% endblock %} {% block content %}
+<div class="container">
+    <center>
+        <h1>Registro</h1>
+    </center>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="date">Nombre</label>
+            <input class="form-control" type="text" placeholder="Username o Name" id="date" name="date" required>
+        </div>
+        <div class="mb-3">
+            <label for="period">NIT</label>
+            <input class="form-control" type="text" placeholder="NIT o Password" id="period" name="period" required>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
+</div>
+{% endblock %}

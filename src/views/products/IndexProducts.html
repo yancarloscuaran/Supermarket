@@ -1,0 +1,68 @@
+{% extends 'layouts/base.html' %} {% block title %} Productos {% endblock %} {% block content %}
+<div class="container mt-3 row">
+    <div class="col-4"></div>
+    <div class="mb-3 col">
+        <form method="POST">
+            <div class="col"></div>
+            <select name="period" class="form-control">
+                    <option selected='true' disabled>Administrador</option>
+                    {% if periods %}
+                        {% for period in periods %}
+                            {% if pd == period[0] %}
+                                <option selected='True' disabled value="{{period[0]}}">{{period[1]}}-{{period[2]}}</option>
+                            {% else %}
+                                <option value="{{period[0]}}">{{period[1]}}-{{period[2]}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif%}
+                </select>
+    </div>
+    <div class="col-3"> <button type="submit" class="btn btn-dark">Elegir</button></div>
+    </form>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col">
+            <a class="btn btn-outline-dark" href="{{url_for('createProducts')}}">Nuevo Producto</a>
+            <br>
+            <br>
+            <h2><b>Productos</b></h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Categoria</th>
+                        <th>Proveedores</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Valor</th>
+                        <th>Fecha Admision</th>
+                        <th>Fecha Vencimiento</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{product[1]}}</td>
+                        <td>{{product[2]}}</td>
+                        <td>{{product[3]}}</td>
+                        <td>{{product[4]}}</td>
+                        <td>{{product[5]}}</td>
+                        <td>{{product[6]}}</td>
+                        <td>{{product[7]}}</td>
+                        <td>
+                            <a class="btn btn-success" href="{{url_for('editProducts', idProduct=product[0])}}">Editar</a>
+                            <a class="btn btn-danger" href="{{url_for('removeProducts', idProduct=product[0])}}">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

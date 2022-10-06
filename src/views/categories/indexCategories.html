@@ -1,0 +1,58 @@
+{% extends 'layouts/base.html' %} {% block title %} Categorias {% endblock %} {% block content %}
+<div class="container mt-3 row">
+    <div class="col-4"></div>
+    <div class="mb-3 col">
+        <form method="POST">
+            <div class="col"></div>
+            <select name="period" class="form-control">
+                <option selected='true' disabled>Administrador</option>
+                {% if periods %}
+                    {% for period in periods %}
+                        {% if pd == period[0] %}
+                            <option selected='True' disabled value="{{period[0]}}">{{period[1]}}-{{period[2]}}</option>
+                        {% else %}
+                            <option value="{{period[0]}}">{{period[1]}}-{{period[2]}}</option>
+                        {% endif %}
+                    {% endfor %}
+                {% endif%}
+            </select>
+    </div>
+    <div class="col-3"> <button type="submit" class="btn btn-dark">Elegir</button></div>
+    </form>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col">
+            <a class="btn btn-outline-dark" href="{{url_for('createCategories')}}">Nueva Categoria</a>
+            <br>
+            <br>
+            <h2><b>Categorias</b></h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Codigo Barras</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td><a class="btn" href="{{url_for('indexProducts', category = category[0])}}">{{category[2]}}</a></td>
+                        <td>{{category[3]}}</td>
+                        <td>
+                            <a class="btn btn-success" href="{{url_for('editCategories', idCategory = category[0])}}">Editar</a>
+                            <a class="btn btn-danger" href="{{url_for('removeCategories', idCategory = category[0])}}">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

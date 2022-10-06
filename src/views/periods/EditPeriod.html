@@ -1,0 +1,16 @@
+{% extends 'layouts/indexBase.html' %} {% block title %} Editar Administrador {% endblock %} {% block content %}
+<div class="container">
+
+    <form method="POST">
+        <div class="mb-3">
+            <label for="date">Nombre</label>
+            <input value="{{period[1]}}" class="form-control" type="text" id="date" name="date" required>
+        </div>
+        <div class="mb-3">
+            <label for="period">NIT</label>
+            <input value="{{period[2]}}" class="form-control" type="text" id="period" name="period" required>
+        </div>
+        <button class="btn btn-success" type="submit">Save</button>
+    </form>
+</div>
+{% endblock %}
